@@ -1,0 +1,33 @@
+// @author: Alex Young
+// @date: 2021-08-04
+
+// the code on line 5 tells the software that we want to use the Servo library
+#include <Servo.h>
+
+// line 8 creates a Servo object using the Servo library
+Servo servo;
+
+// line 11 declares a variable. It's a number that we will use to tell our servo where to go
+int targetPosition;
+
+
+// in our setup function, we want to tell our board that our servo is connected to pin 2
+// we only need to do this once, which is why it's in the setup function
+void setup() {
+  servo.attach(2);
+}
+
+
+// this is where the fun happens
+void loop() { 
+  // line 25 tells the computer to choose a random number between 0 and 180
+  // we use this range because the servo can only move from 0° to 180°
+  targetPosition = random(181);
+
+  // line 28 tells the servo to go to the position we came up with from line 22
+  servo.write(targetPosition);
+
+  // line 32 tells the computer to wait for a random duration between 0.5 and 1.5 seconds
+  // after this wait time expires, the loop will run again. This happens over and over... forever.
+  delay(random(500, 1500));                     
+}
